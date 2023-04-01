@@ -1,15 +1,18 @@
 package encryptiontesting;
 
 import java.util.Random;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class EncryptionAlgorithm {
 
-    public static void main(String[] args) {
+    public static int[] encryptFile(String input, String output) throws IOException {
         
 
         //33 to 126
         Random rand = new Random();
-        String message = "This is a message and it is super duper ultra mega secret";
+        String message = input;
         
         int a = rand.nextInt(10); 
         int b = rand.nextInt(10); 
@@ -30,12 +33,61 @@ public class EncryptionAlgorithm {
         
         uncoded = encode(uncoded, key2);
         
-        System.out.print("Original Message: " + message + " with key ");
+        /*System.out.print("Original Message: " + message + " with key ");
         printArray(key3);
         System.out.print("Encoded Message: ");
         printArray(coded);
         System.out.print("Uncoded Message: ");
-        printArray(uncoded);
+        printArray(uncoded);*/
+        
+        BufferedWriter writer = new BufferedWriter(new FileWriter(output));
+        writer.write(coded);
+        writer.close();
+        
+        
+        return key3;
+        
+    }
+    
+        public static void decryptFile(String input, int[] inKey, String output) throws IOException{
+        
+
+        //33 to 126
+        Random rand = new Random();
+        String message = input;
+        
+        int a = rand.nextInt(10); 
+        int b = rand.nextInt(10); 
+        int c = rand.nextInt(10); 
+        int d = rand.nextInt(10); 
+        int e = rand.nextInt(10); 
+        int f = rand.nextInt(10);
+        
+        int[] key = inKey;
+        key[3]++;
+        key[4]++;
+        key[5]++;
+        int[] key2 = {a, b, c, d + 1, e + 1, f + 1};
+        int[] key3 = {a, b, c, d, e, f};
+        
+        char[] coded = strToArray(message);
+        
+        coded = encode(coded, key);
+      
+        char[] uncoded = coded.clone();
+        
+        uncoded = encode(uncoded, key2);
+        
+        /*System.out.print("Original Message: " + message + " with key ");
+        printArray(key3);
+        System.out.print("Encoded Message: ");
+        printArray(coded);
+        System.out.print("Uncoded Message: ");
+        printArray(uncoded);*/
+        
+        BufferedWriter writer = new BufferedWriter(new FileWriter(output));
+        writer.write(coded);
+        writer.close();
         
     }
     
