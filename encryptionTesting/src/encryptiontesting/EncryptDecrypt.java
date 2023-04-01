@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.*;
 
 public class EncryptDecrypt {
-    public static int encrypt(){
+    public int encrypt(){
         System.out.println("You have chosen to encrypt");
         
         FileDialog input = new FileDialog((Frame)null, "Select File to Open");
@@ -21,7 +21,7 @@ public class EncryptDecrypt {
         return 0;
     }
     
-    public static void decrypt(){
+    public void decrypt(){
         System.out.println("You have chosen to decrypt");
         
         FileDialog input = new FileDialog((Frame)null, "Select File to Open");
