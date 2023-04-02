@@ -19,10 +19,10 @@ public class Controller extends Application {
     private int key;
     public TextField txt = new TextField();
     private HBox encBox;
+    private HBox decBox;
     
     @Override
     public void start(Stage primaryStage) {
-        HBox decBox;
         HBox hbox = new HBox();
         hbox.setSpacing(10);
         hbox.setStyle("-fx-background-color: #336699;");
@@ -43,6 +43,11 @@ public class Controller extends Application {
             public void handle(ActionEvent event) {
                 encBox = encHBox();
                 root.add(encBox, 1, 2);
+                if(decBox != null){
+                    System.out.println(root.getChildren());
+                    root.getChildren().remove(decBox);
+                    decBox = null;
+                }
             }
         });
         
@@ -52,7 +57,13 @@ public class Controller extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                using.decrypt();
+                decBox = decHBox();
+                root.add(decBox, 1, 2);
+                if(encBox != null){
+                    System.out.println(root.getChildren());
+                    root.getChildren().remove(encBox);
+                    encBox = null;
+                }
             }
         });
         
@@ -96,9 +107,9 @@ public class Controller extends Application {
 //        hbox.getChildren().addAll(buttonCurrent, buttonProjected);
         
         EncryptDecrypt using = new EncryptDecrypt();
-        Button enc = new Button();
-        enc.setText("ENCRYPT");
-        enc.setOnAction(new EventHandler<ActionEvent>() {
+        Button encWork = new Button();
+        encWork.setText("ENCRYPT");
+        encWork.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
@@ -110,11 +121,42 @@ public class Controller extends Application {
         lab.setText("Key: ");
         txt.setText("Waiting for encryption to complete");
         
-        hbox.getChildren().addAll(enc,lab,txt);
+        hbox.getChildren().addAll(encWork,lab,txt);
         
 
     return hbox;
     }  
+    
+    public HBox decHBox() {
+        HBox hbox = new HBox();
+
+//        Button buttonCurrent = new Button("Current");
+//        buttonCurrent.setPrefSize(100, 20);
+//
+//        Button buttonProjected = new Button("Projected");
+//        buttonProjected.setPrefSize(100, 20);
+//        hbox.getChildren().addAll(buttonCurrent, buttonProjected);
+        
+        Button decWork = new Button();
+        decWork.setText("DECRYPT");
+        EncryptDecrypt using = new EncryptDecrypt();
+        decWork.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                using.decrypt();
+            }
+        });
+        
+        Label lab = new Label();
+        lab.setText("Key: ");
+        txt.setText("Waiting for encryption to complete");
+        
+        hbox.getChildren().addAll(decWork,lab,txt);
+        
+
+    return hbox;
+    } 
     
     
 }
