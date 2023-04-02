@@ -2,6 +2,9 @@
 package encryptiontesting;
 
 import java.awt.Insets;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,8 +19,8 @@ import javafx.stage.Stage;
 
 
 public class Controller extends Application {
-    private int key;
-    public TextField txt = new TextField();
+    private int[] key;
+    public static TextField txt = new TextField();
     private HBox encBox;
     private HBox decBox;
     
@@ -41,6 +44,7 @@ public class Controller extends Application {
             
             @Override
             public void handle(ActionEvent event) {
+                
                 encBox = encHBox();
                 root.add(encBox, 1, 2);
                 if(decBox != null){
@@ -96,7 +100,7 @@ public class Controller extends Application {
         launch(args);
     }
     
-    public HBox encHBox() {
+    public HBox encHBox(){
         HBox hbox = new HBox();
 
 //        Button buttonCurrent = new Button("Current");
@@ -113,7 +117,16 @@ public class Controller extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                key = using.encrypt();
+                try {
+                    key = EncryptDecrypt.encrypt();
+                    String keyString = "";
+                    for (int temp:key){
+                        keyString = keyString + temp;
+                    }
+                    txt.setText(keyString);
+                } catch (IOException ex) {
+                    System.out.println("Something went wrong");
+                }
             }
         });
         
@@ -144,7 +157,11 @@ public class Controller extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                using.decrypt();
+                try {
+                    using.decrypt();
+                } catch (IOException ex) {
+                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         

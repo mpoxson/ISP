@@ -75,12 +75,21 @@ public class EncryptDecrypt extends EncryptionAlgorithm{
         }
         String inputFile = sb.toString();
         
-        System.out.println("Enter in your key for decryption, one digit at a time");
+        //System.out.println("Enter in your key for decryption, one digit at a time");
         int[] key = new int[6];
-        for(int x=0; x<6; x++){
-        Scanner s = new Scanner(System.in);
-        key[x] = s.nextInt();
+        int c = 0;
+        char[] tempArr = Controller.txt.getText().toCharArray();
+        for (char temp: tempArr){
+//            System.out.println("temp: " + temp);
+            key[c] = temp - 48;
+//            System.out.println("Key at " + c + ": " + key[c]);
+            c++;
         }
+//        for(int x=0; x<6; x++){
+//        //Scanner s = new Scanner(System.in);
+//        //key[x] = s.nextInt();
+//            System.out.print(key[x]);
+//        }
         
         decryptFile(inputFile, key, pathOut);
         
