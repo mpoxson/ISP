@@ -24,10 +24,10 @@ public class EncryptDecrypt extends EncryptionAlgorithm{
         System.out.println(pathIn + " chosen.");
         
         FileDialog output = new FileDialog((Frame)null, "Select the File You Want the Encrypted Message to Store in");
-        input.setMode(FileDialog.LOAD);
-        input.setVisible(true);
-        String pathOut = input.getDirectory() + input.getFile();
-        input.dispose();
+        output.setMode(FileDialog.LOAD);
+        output.setVisible(true);
+        String pathOut = output.getDirectory() + output.getFile();
+        output.dispose();
         System.out.println(pathOut + " chosen.");
         
         InputStream inputStream = new FileInputStream(pathIn);
@@ -37,6 +37,7 @@ public class EncryptDecrypt extends EncryptionAlgorithm{
         String str;
         while((str = reader.readLine())!= null){
            sb.append(str);
+           sb.append("\n");
         }
         String inputFile = sb.toString();
         
@@ -58,10 +59,10 @@ public class EncryptDecrypt extends EncryptionAlgorithm{
         System.out.println(pathIn + " chosen.");
 
         FileDialog output = new FileDialog((Frame)null, "Select the File You Want the Decryption to Store in");
-        input.setMode(FileDialog.LOAD);
-        input.setVisible(true);
-        String pathOut = input.getDirectory() + input.getFile();
-        input.dispose();
+        output.setMode(FileDialog.LOAD);
+        output.setVisible(true);
+        String pathOut = output.getDirectory() + output.getFile();
+        output.dispose();
         System.out.println(pathOut + " chosen.");
         
         InputStream inputStream = new FileInputStream(pathIn);
