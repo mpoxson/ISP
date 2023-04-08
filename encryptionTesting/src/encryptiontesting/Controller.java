@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -44,12 +45,16 @@ public class Controller {
             scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
+                        primaryStage.getIcons().add(new Image("file:./icon.jpg"));
+            primaryStage.setTitle("CAESAR ENCRYPTION");
         } else if (source == decryption) {
             root = FXMLLoader.load(getClass().getResource("decryption.fxml"));
             primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
+                        primaryStage.getIcons().add(new Image("file:./icon.jpg"));
+            primaryStage.setTitle("ET TU?");
         } else if (source == quit) {
             System.out.println("Quitting");
             System.exit(0);
@@ -82,6 +87,8 @@ public class Controller {
             scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
+                        primaryStage.getIcons().add(new Image("file:./icon.jpg"));
+            primaryStage.setTitle("CAESAR ENCRYPTION");
         }
     }
 }

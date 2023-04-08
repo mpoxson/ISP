@@ -34,6 +34,8 @@ public class Main extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
             Scene scene1 = new Scene(root);
+            primaryStage.getIcons().add(new Image("file:./icon.jpg"));
+            primaryStage.setTitle("CAESAR ENCRYPTION");
             primaryStage.setScene(scene1);
             primaryStage.show();
         } catch (IOException ex) {
