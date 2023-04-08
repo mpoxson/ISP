@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class EncryptDecrypt extends EncryptionAlgorithm{
     public static int[] encrypt()throws IOException{
-        System.out.println("You have chosen to encrypt, select the text file you want to encrypt, then select a blank file you want the encrypted output to go to");
+        //System.out.println("You have chosen to encrypt, select the text file you want to encrypt, then select a blank file you want the encrypted output to go to");
         
         FileDialog input = new FileDialog((Frame)null, "Select the File You Want to Encrypt");
         input.setMode(FileDialog.LOAD);
@@ -50,7 +50,7 @@ public class EncryptDecrypt extends EncryptionAlgorithm{
     }
     
     public static void decrypt(int[] key) throws IOException{
-        System.out.println("You have chosen to decrypt, choose the file you want to decrypt, then chooose the file you want the decrypted message to store, then type in your key for decrypting, one digit at a time");
+        //System.out.println("You have chosen to decrypt, choose the file you want to decrypt, then chooose the file you want the decrypted message to store, then type in your key for decrypting, one digit at a time");
         
         FileDialog input = new FileDialog((Frame)null, "Select the File You Want to Decrypt");
         input.setMode(FileDialog.LOAD);
