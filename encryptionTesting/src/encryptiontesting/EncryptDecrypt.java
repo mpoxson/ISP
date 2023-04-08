@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.IOException;
 
+
 public class EncryptDecrypt extends EncryptionAlgorithm{
     public static int[] encrypt()throws IOException{
         System.out.println("You have chosen to encrypt, select the text file you want to encrypt, then select a blank file you want the encrypted output to go to");
@@ -48,7 +49,7 @@ public class EncryptDecrypt extends EncryptionAlgorithm{
         return key;
     }
     
-    public static void decrypt() throws IOException{
+    public static void decrypt(int[] key) throws IOException{
         System.out.println("You have chosen to decrypt, choose the file you want to decrypt, then chooose the file you want the decrypted message to store, then type in your key for decrypting, one digit at a time");
         
         FileDialog input = new FileDialog((Frame)null, "Select the File You Want to Decrypt");
@@ -75,12 +76,12 @@ public class EncryptDecrypt extends EncryptionAlgorithm{
         }
         String inputFile = sb.toString();
         
-        System.out.println("Enter in your key for decryption, one digit at a time");
-        int[] key = new int[6];
-        for(int x=0; x<6; x++){
-        Scanner s = new Scanner(System.in);
-        key[x] = s.nextInt();
-        }
+        //System.out.println("Enter in your key for decryption, one digit at a time");
+//        for(int x=0; x<6; x++){
+//        //Scanner s = new Scanner(System.in);
+//        //key[x] = s.nextInt();
+//            System.out.print(key[x]);
+//        }
         
         decryptFile(inputFile, key, pathOut);
         
