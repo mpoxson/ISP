@@ -1,179 +1,87 @@
-
 package encryptiontesting;
 
-import java.awt.Insets;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+public class Controller {
 
-public class Controller extends Application {
-    private int[] key;
-    public static TextField txt = new TextField();
-    private HBox encBox;
-    private HBox decBox;
-    
-    @Override
-    public void start(Stage primaryStage) {
-        HBox hbox = new HBox();
-        hbox.setSpacing(10);
-        hbox.setStyle("-fx-background-color: #336699;");
-        GridPane root = new GridPane();
-//        Button buttonCurrent = new Button("Current");
-//        buttonCurrent.setPrefSize(100, 20);
-//
-//        Button buttonProjected = new Button("Projected");
-//        buttonProjected.setPrefSize(100, 20);
-//        hbox.getChildren().addAll(buttonCurrent, buttonProjected);
-        
-        EncryptDecrypt using = new EncryptDecrypt();
-        Button enc = new Button();
-        enc.setText("ENCRYPTION");
-        enc.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                
-                encBox = encHBox();
-                root.add(encBox, 1, 2);
-                if(decBox != null){
-                    System.out.println(root.getChildren());
-                    root.getChildren().remove(decBox);
-                    decBox = null;
+    @FXML
+    public TextField txtKey, txtKey2;
+
+    @FXML
+    public Button encryption, decryption, quit, encrypt, decrypt, home;
+
+    private Parent root;
+    private Scene scene;
+    private Stage primaryStage;
+
+    public void setEventHandler(ActionEvent e) throws IOException {
+        //System.out.println("test");
+        Object source = e.getSource();
+        //String test = e.getSource().toString();
+        //System.out.println(source);
+        //System.out.println(test);
+        //System.out.println(encryption);
+        if (source.equals(encryption)) {
+            root = FXMLLoader.load(getClass().getResource("encryption.fxml"));
+            primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } else if (source == decryption) {
+            root = FXMLLoader.load(getClass().getResource("decryption.fxml"));
+            primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } else if (source == quit) {
+            System.out.println("Quitting");
+            System.exit(0);
+        } else if (source == encrypt) {
+            int[] key = EncryptDecrypt.encrypt();
+            String keyString = "";
+            for (int temp : key) {
+                keyString = keyString + temp;
+            }
+            txtKey.setText(keyString);
+        } else if (source == decrypt) {
+            System.out.println(txtKey2.getText().length());
+            if (txtKey2.getText().length() != 6) {
+                System.out.println("Not 6 digit code");
+            } else {
+                int[] key = new int[6];
+                int c = 0;
+                char[] tempArr = txtKey2.getText().toCharArray();
+                for (char temp : tempArr) {
+//            System.out.println("temp: " + temp);
+                    key[c] = temp - 48;
+//            System.out.println("Key at " + c + ": " + key[c]);
+                    c++;
                 }
+                EncryptDecrypt.decrypt(key);
             }
-        });
-        
-        Button dec = new Button();
-        dec.setText("DECRYPTION");
-        dec.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                decBox = decHBox();
-                root.add(decBox, 1, 2);
-                if(encBox != null){
-                    System.out.println(root.getChildren());
-                    root.getChildren().remove(encBox);
-                    encBox = null;
-                }
-            }
-        });
-        
-        Button quit = new Button();
-        quit.setText("QUIT");
-        quit.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Quitting");
-                System.exit(0);  
-            }
-        });
-        
-        hbox.getChildren().addAll(enc,dec,quit);
-        System.out.println("Added");
-         
-        root.add(hbox,1,1);
-        Scene scene = new Scene(root, 500, 500);
-        
-        primaryStage.setTitle("Encryption/Decryption");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        } else if (source == home) {
+            root = FXMLLoader.load(getClass().getResource("home.fxml"));
+            primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        }
     }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
-    public HBox encHBox(){
-        HBox hbox = new HBox();
-
-//        Button buttonCurrent = new Button("Current");
-//        buttonCurrent.setPrefSize(100, 20);
-//
-//        Button buttonProjected = new Button("Projected");
-//        buttonProjected.setPrefSize(100, 20);
-//        hbox.getChildren().addAll(buttonCurrent, buttonProjected);
-        
-        EncryptDecrypt using = new EncryptDecrypt();
-        Button encWork = new Button();
-        encWork.setText("ENCRYPT");
-        encWork.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    key = EncryptDecrypt.encrypt();
-                    String keyString = "";
-                    for (int temp:key){
-                        keyString = keyString + temp;
-                    }
-                    txt.setText(keyString);
-                } catch (IOException ex) {
-                    System.out.println("Something went wrong");
-                }
-            }
-        });
-        
-        Label lab = new Label();
-        lab.setText("Key: ");
-        txt.setText("Waiting for encryption to complete");
-        
-        hbox.getChildren().addAll(encWork,lab,txt);
-        
-
-    return hbox;
-    }  
-    
-    public HBox decHBox() {
-        HBox hbox = new HBox();
-
-//        Button buttonCurrent = new Button("Current");
-//        buttonCurrent.setPrefSize(100, 20);
-//
-//        Button buttonProjected = new Button("Projected");
-//        buttonProjected.setPrefSize(100, 20);
-//        hbox.getChildren().addAll(buttonCurrent, buttonProjected);
-        
-        Button decWork = new Button();
-        decWork.setText("DECRYPT");
-        EncryptDecrypt using = new EncryptDecrypt();
-        decWork.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    using.decrypt();
-                } catch (IOException ex) {
-                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-        
-        Label lab = new Label();
-        lab.setText("Key: ");
-        txt.setText("Waiting for encryption to complete");
-        
-        hbox.getChildren().addAll(decWork,lab,txt);
-        
-
-    return hbox;
-    } 
-    
-    
 }

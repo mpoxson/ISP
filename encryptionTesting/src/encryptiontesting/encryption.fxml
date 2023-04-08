@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="encryptiontesting.Controller">
    <children>
       <ImageView fitHeight="339.0" fitWidth="591.0" layoutX="64.0" layoutY="47.0" opacity="0.25" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../Untitled.png" />
+            <Image url="@Untitled.png" />
          </image>
       </ImageView>
       <Label layoutX="152.0" text="Caesar Encryption" textAlignment="CENTER">
@@ -20,19 +20,19 @@
             <Font name="Lucida Calligraphy Italic" size="30.0" />
          </font>
       </Label>
-      <Button fx:id="home" contentDisplay="CENTER" layoutX="301.0" layoutY="273.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="57.0" text="Home" textAlignment="CENTER">
+      <Button fx:id="home" contentDisplay="CENTER" layoutX="301.0" layoutY="273.0" mnemonicParsing="false" onAction="#setEventHandler" prefHeight="26.0" prefWidth="57.0" text="Home" textAlignment="CENTER">
          <font>
             <Font name="Times New Roman" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="encrypt" contentDisplay="CENTER" layoutX="244.0" layoutY="273.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="57.0" text="Encrypt" textAlignment="CENTER">
+      <Button fx:id="encrypt" contentDisplay="CENTER" layoutX="244.0" layoutY="273.0" mnemonicParsing="false" onAction="#setEventHandler" prefHeight="26.0" prefWidth="57.0" text="Encrypt" textAlignment="CENTER">
          <font>
             <Font name="Times New Roman" size="12.0" />
          </font>
       </Button>
       <Label layoutX="161.0" layoutY="46.0" prefHeight="69.0" prefWidth="280.0" text="To encrypt a file: Press the encrypt button and select one file to encrypt and one file to output the encrypted data." textAlignment="CENTER" wrapText="true" />
       <Label layoutX="161.0" layoutY="115.0" prefHeight="69.0" prefWidth="280.0" text="After the file's data is encrypted, a key will be generated and show below. SAVE THIS KEY! It is needed to decrypt the data." textAlignment="CENTER" wrapText="true" />
-      <TextField fx:id="txtKey" layoutX="329.0" layoutY="201.0" prefHeight="25.0" prefWidth="65.0" text="KEY" />
+      <TextField fx:id="txtKey" layoutX="329.0" layoutY="201.0" onAction="#setEventHandler" prefHeight="25.0" prefWidth="68.0" text="KEY" />
       <Label layoutX="209.0" layoutY="206.0" text="Decryption Key:" />
    </children>
 </AnchorPane>

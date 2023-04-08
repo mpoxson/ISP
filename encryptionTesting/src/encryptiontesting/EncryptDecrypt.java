@@ -48,7 +48,7 @@ public class EncryptDecrypt extends EncryptionAlgorithm{
         return key;
     }
     
-    public static void decrypt() throws IOException{
+    public static void decrypt(int[] key) throws IOException{
         System.out.println("You have chosen to decrypt, choose the file you want to decrypt, then chooose the file you want the decrypted message to store, then type in your key for decrypting, one digit at a time");
         
         FileDialog input = new FileDialog((Frame)null, "Select the File You Want to Decrypt");
@@ -76,15 +76,6 @@ public class EncryptDecrypt extends EncryptionAlgorithm{
         String inputFile = sb.toString();
         
         //System.out.println("Enter in your key for decryption, one digit at a time");
-        int[] key = new int[6];
-        int c = 0;
-        char[] tempArr = Controller.txt.getText().toCharArray();
-        for (char temp: tempArr){
-//            System.out.println("temp: " + temp);
-            key[c] = temp - 48;
-//            System.out.println("Key at " + c + ": " + key[c]);
-            c++;
-        }
 //        for(int x=0; x<6; x++){
 //        //Scanner s = new Scanner(System.in);
 //        //key[x] = s.nextInt();
