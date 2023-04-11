@@ -26,7 +26,7 @@ public class Controller {
     public TextField txtKey, txtKey2;
 
     @FXML
-    public Button encryption, decryption, brutus, encrypt, decrypt, home;
+    public Button encryption, decryption, brutus, encrypt, decrypt, home, crack;
 
     private Parent root;
     private Scene scene;
@@ -56,8 +56,13 @@ public class Controller {
                         primaryStage.getIcons().add(new Image("file:./icon.jpg"));
             primaryStage.setTitle("ET TU?");
         } else if (source == brutus) {
-            int crackKey = Brutus.FindKey();
-            System.out.println(crackKey);
+           root = FXMLLoader.load(getClass().getResource("hack.fxml"));
+            primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            primaryStage.getIcons().add(new Image("file:./icon.jpg"));
+            primaryStage.setTitle("BRUTUS DECRYPTION");
         } else if (source == encrypt) {
             int[] key = EncryptDecrypt.encrypt();
             String keyString = "";
@@ -89,6 +94,9 @@ public class Controller {
             primaryStage.show();
                         primaryStage.getIcons().add(new Image("file:./icon.jpg"));
             primaryStage.setTitle("CAESAR ENCRYPTION");
+        }else if (source == crack) {
+            int crackKey = Brutus.FindKey();
+            System.out.println(crackKey);
         }
     }
 }
