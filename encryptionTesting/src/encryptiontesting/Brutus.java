@@ -1,7 +1,33 @@
 package encryptiontesting;
 
+import java.awt.FileDialog;
+import java.awt.Frame;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
 public class Brutus {
-    public static int FindKey(String codedMessage) {
+    public static int FindKey() throws IOException{
+        
+        FileDialog input = new FileDialog((Frame)null, "Select the File You Want to Attempt to Get the Key For");
+        input.setMode(FileDialog.LOAD);
+        input.setVisible(true);
+        String pathIn = input.getDirectory() + input.getFile();
+        input.dispose();
+        System.out.println(pathIn + " chosen.");
+        
+        InputStream inputStream = new FileInputStream(pathIn);
+        InputStreamReader isReader = new InputStreamReader(inputStream);
+        BufferedReader reader = new BufferedReader(isReader);
+        StringBuffer sb = new StringBuffer();
+        String str;
+        while((str = reader.readLine())!= null){
+           sb.append(str);
+        }
+        String codedMessage = sb.toString();
+        System.out.println(codedMessage);
         
         String[] common = {"the", "and", "that", "have", "for", "not", "with", "you", 
             "this", "but", "his", "from", "they", "say", "her", "she", "will", "one", "all", "would", 

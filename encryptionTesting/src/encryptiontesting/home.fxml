@@ -29,7 +29,7 @@
             <Font name="Times New Roman" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="quit" contentDisplay="CENTER" layoutX="230.0" layoutY="229.0" mnemonicParsing="false" onAction="#setEventHandler" prefHeight="26.0" prefWidth="140.0" text="Quit" textAlignment="CENTER">
+      <Button fx:id="brutus" contentDisplay="CENTER" layoutX="230.0" layoutY="229.0" mnemonicParsing="false" onAction="#setEventHandler" prefHeight="26.0" prefWidth="140.0" text="Brutus" textAlignment="CENTER">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
