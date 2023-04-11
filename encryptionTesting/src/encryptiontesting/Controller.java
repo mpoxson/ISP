@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 public class Controller {
 
     @FXML
-    public TextField txtKey, txtKey2;
+    public TextField txtKey, txtKey2, txtKey3;
 
     @FXML
     public Button encryption, decryption, brutus, encrypt, decrypt, home, crack;
@@ -97,6 +97,7 @@ public class Controller {
         }else if (source == crack) {
             int crackKey = Brutus.FindKey();
             System.out.println(crackKey);
+            txtKey3.setText("" + crackKey);
         }
     }
 }
