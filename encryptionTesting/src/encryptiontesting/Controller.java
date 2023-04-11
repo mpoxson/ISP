@@ -26,7 +26,7 @@ public class Controller {
     public TextField txtKey, txtKey2;
 
     @FXML
-    public Button encryption, decryption, quit, encrypt, decrypt, home;
+    public Button encryption, decryption, brutus, encrypt, decrypt, home;
 
     private Parent root;
     private Scene scene;
@@ -55,9 +55,9 @@ public class Controller {
             primaryStage.show();
                         primaryStage.getIcons().add(new Image("file:./icon.jpg"));
             primaryStage.setTitle("ET TU?");
-        } else if (source == quit) {
-            System.out.println("Quitting");
-            System.exit(0);
+        } else if (source == brutus) {
+            int crackKey = Brutus.FindKey();
+            System.out.println(crackKey);
         } else if (source == encrypt) {
             int[] key = EncryptDecrypt.encrypt();
             String keyString = "";
