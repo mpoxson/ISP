@@ -80,7 +80,7 @@ public class Brutus {
                     System.out.println("Tested key " + i + " number of hits: " + hits);
                 }
                 
-                if(hits > bestHits) {
+                if(hits >= bestHits) {
                     bestKey = i;
                     bestHits = hits;   
                     //System.out.println("Tested key " + i + " number of hits: " + hits);
