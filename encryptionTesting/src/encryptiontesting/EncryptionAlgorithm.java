@@ -10,7 +10,6 @@ public class EncryptionAlgorithm {
     public static int[] encryptFile(String input, String output) throws IOException {
         
 
-        //33 to 126
         Random rand = new Random();
         String message = input;
         
@@ -20,32 +19,25 @@ public class EncryptionAlgorithm {
         int d = rand.nextInt(10); 
         int e = rand.nextInt(10); 
         int f = rand.nextInt(10);
+        int g = rand.nextInt(10);
+        int h = rand.nextInt(10);
+        int i = rand.nextInt(10);
         
-        int[] key = {a, b, c, d, e, f};
-        int[] key2 = {a, b, c, d + 1, e + 1, f + 1};
-        int[] key3 = {a, b, c, d, e, f};
+        
+        int[] key = {a, b, c, d, e, f, g, h, i};
+        int[] returnKey = {a, b, c, d, e, f, g, h, i};
         
         char[] coded = strToArray(message);
         
         coded = encode(coded, key);
-      
-        char[] uncoded = coded.clone();
-        
-        uncoded = encode(uncoded, key2);
-        
-        /*System.out.print("Original Message: " + message + " with key ");
-        printArray(key3);
-        System.out.print("Encoded Message: ");
-        printArray(coded);
-        System.out.print("Uncoded Message: ");
-        printArray(uncoded);*/
+     
         
         BufferedWriter writer = new BufferedWriter(new FileWriter(output));
         writer.write(coded);
         writer.close();
         
         
-        return key3;
+        return returnKey;
         
     }
     
@@ -53,30 +45,20 @@ public class EncryptionAlgorithm {
         
 
         //33 to 126
-        Random rand = new Random();
         String message = input;
         
-        int a = rand.nextInt(10); 
-        int b = rand.nextInt(10); 
-        int c = rand.nextInt(10); 
-        int d = rand.nextInt(10); 
-        int e = rand.nextInt(10); 
-        int f = rand.nextInt(10);
-        
+
         int[] key = inKey;
         key[3]++;
         key[4]++;
         key[5]++;
-        int[] key2 = {a, b, c, d + 1, e + 1, f + 1};
-        int[] key3 = {a, b, c, d, e, f};
+
         
         char[] coded = strToArray(message);
         
         coded = encode(coded, key);
       
-        char[] uncoded = coded.clone();
-        
-        uncoded = encode(uncoded, key2);
+
         
         /*System.out.print("Original Message: " + message + " with key ");
         printArray(key3);
@@ -117,10 +99,10 @@ public class EncryptionAlgorithm {
         for(int i = 0; i < coded.length; i++) {
             int a, b, c;
             if(coded[i] != ' ') {
-                if (key[1] >= 10) {
+                if (key[1] >= key[6] + key[8]) {
                     key[1] = 0;
                 }
-                if(key[0] >= 15) {
+                if(key[0] >= key[6] + key[7] + key[8]) {
                     key[0] = key[1];
                     key[1]++;
                 }

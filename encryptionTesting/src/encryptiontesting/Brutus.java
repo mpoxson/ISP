@@ -27,7 +27,7 @@ public class Brutus {
            sb.append(str);
         }
         String codedMessage = sb.toString();
-        System.out.println(codedMessage);
+        //System.out.println(codedMessage);
         
         String[] common = {"the", "and", "that", "have", "for", "not", "with", "you", 
             "this", "but", "his", "from", "they", "say", "her", "she", "will", "one", "all", "would", 
@@ -42,7 +42,7 @@ public class Brutus {
             "much", "must", "name", "need", "never", "next", "only", "open", "part", "play", "read", 
             "real", "room", "same", "show", "small", "some", "take", "tell", "than", "that", "them", 
             "then", "they", "time", "took", "tree", "turn", "very", "want", "well", "went", "were", 
-            "what", "when", "which", "while", "white", "will", "with", "work", "year", "your", "shrek", 
+            "what", "when", "which", "while", "white", "will", "with", "work", "year", "your", 
             "word", "had", "which", "has", "number", "made", "part"};
         
         int bestKey = 0;
@@ -50,7 +50,7 @@ public class Brutus {
         int hits = 0;
         
         char[] coded = strToArray(codedMessage);
-        for(int i = 0; i < 999999; i++) {
+        for(int i = 0; i < 999999999; i++) {
 
             int[] tempKey = intToArray(i);
             char[] tempArray = coded.clone();
@@ -64,7 +64,6 @@ public class Brutus {
                 String testString = toString(newCode).toLowerCase();
 
                 int lastIndex = 0;
-                int count = 0;
                 
                 for(int j = 0; j < common.length; j++) {                    
                     if(testString.contains(common[j])) {
@@ -77,11 +76,15 @@ public class Brutus {
                         }
                     }
                 }
+                if(hits != 0) {
+                    System.out.println("Tested key " + i + " number of hits: " + hits);
+                }
+                
                 if(hits > bestHits) {
                     bestKey = i;
                     bestHits = hits;   
-                    System.out.println("Tested key " + i + " number of hits: " + hits);
-                    //printArray(tempArray);
+                    //System.out.println("Tested key " + i + " number of hits: " + hits);
+                    EncryptionAlgorithm.printArray(tempArray);
                 }
                 
             }
@@ -104,13 +107,16 @@ public class Brutus {
         return ch;
     }
     public static int[] intToArray(int num) {
-        int[] result = {0,0,0,0,0,0};
-        result[5] = num % 10;
-        result[4] = num/10 % 10;
-        result[3] = num/100 % 10;
-        result[2] = num/1000 % 10;
-        result[1] = num/10000 % 10;
-        result[0] = num/100000 % 10;
+        int[] result = {0,0,0,0,0,0,0,0,0};
+        result[8] = num % 10;
+        result[7] = num/10 % 10;
+        result[6] = num/100 % 10;
+        result[5] = num/1000 % 10;
+        result[4] = num/10000 % 10;
+        result[3] = num/100000 % 10;
+        result[2] = num/1000000 % 10;
+        result[1] = num/10000000 % 10;
+        result[0] = num/100000000 % 10;
         
         return result;
     }  

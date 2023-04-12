@@ -72,10 +72,10 @@ public class Controller {
             txtKey.setText(keyString);
         } else if (source == decrypt) {
             System.out.println(txtKey2.getText().length());
-            if (txtKey2.getText().length() != 6) {
-                System.out.println("Not 6 digit code");
+            if (txtKey2.getText().length() != 9) {
+                System.out.println("Not a 9 digit code");
             } else {
-                int[] key = new int[6];
+                int[] key = new int[9];
                 int c = 0;
                 char[] tempArr = txtKey2.getText().toCharArray();
                 for (char temp : tempArr) {
