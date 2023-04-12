@@ -102,7 +102,7 @@ public class EncryptionAlgorithm {
                 if (key[1] >= key[6] + 10) {
                     key[1] = key[7] - 3;
                 }
-                if(key[0] >= key[7] + 10) {
+                if(key[0] >= key[8] + 10) {
                     key[0] = key[1];
                     key[1]++;
                 }
