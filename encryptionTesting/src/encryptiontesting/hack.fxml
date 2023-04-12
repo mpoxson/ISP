@@ -32,7 +32,7 @@
       </Button>
       <Label layoutX="161.0" layoutY="46.0" prefHeight="69.0" prefWidth="280.0" text="To crack a file: Press the crack button and select one encrypted file to decrypt." textAlignment="CENTER" wrapText="true" />
       <Label layoutX="144.0" layoutY="115.0" prefHeight="69.0" prefWidth="311.0" text="After the file's decryption key is cracked, the key will be shown below. This key is most likely the key used to decrypt the data correctly." textAlignment="CENTER" wrapText="true" />
-      <TextField fx:id="txtKey3" layoutX="329.0" layoutY="201.0" onAction="#setEventHandler" prefHeight="25.0" prefWidth="68.0" text="KEY" />
+      <TextField fx:id="txtKey3" layoutX="329.0" layoutY="201.0" onAction="#setEventHandler" prefHeight="25.0" prefWidth="97.0" text="KEY" />
       <Label layoutX="209.0" layoutY="206.0" text="Decryption Key:" />
    </children>
 </AnchorPane>

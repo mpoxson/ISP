@@ -32,7 +32,7 @@
       </Button>
       <Label layoutX="158.0" layoutY="46.0" prefHeight="69.0" prefWidth="284.0" text="To decrypt a file: Press the decrypt button and select one file to decrypt and one file to output the decrypted data." textAlignment="CENTER" wrapText="true" />
       <Label layoutX="158.0" layoutY="116.0" prefHeight="69.0" prefWidth="284.0" text="Type in the same key as was shown on the encryption page. Data will not be properly decrypted unless the key matches exactly." textAlignment="CENTER" wrapText="true" />
-      <TextField fx:id="txtKey2" layoutX="329.0" layoutY="201.0" prefHeight="25.0" prefWidth="68.0" text="KEY" />
+      <TextField fx:id="txtKey2" layoutX="329.0" layoutY="201.0" prefHeight="25.0" prefWidth="97.0" text="KEY" />
       <Label layoutX="209.0" layoutY="206.0" text="Decryption Key:" />
    </children>
 </AnchorPane>
