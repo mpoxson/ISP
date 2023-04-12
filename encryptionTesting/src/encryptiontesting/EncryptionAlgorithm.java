@@ -99,10 +99,10 @@ public class EncryptionAlgorithm {
         for(int i = 0; i < coded.length; i++) {
             int a, b, c;
             if(coded[i] != ' ') {
-                if (key[1] >= key[6] + key[8]) {
-                    key[1] = 0;
+                if (key[1] >= key[6]) {
+                    key[1] = key[8] - 3;
                 }
-                if(key[0] >= key[6] + key[7] + key[8]) {
+                if(key[0] >= key[7] + key[8] + 2) {
                     key[0] = key[1];
                     key[1]++;
                 }
