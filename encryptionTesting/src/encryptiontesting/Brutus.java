@@ -84,7 +84,7 @@ public class Brutus {
                     bestKey = i;
                     bestHits = hits;   
                     //System.out.println("Tested key " + i + " number of hits: " + hits);
-                    EncryptionAlgorithm.printArray(tempArray);
+                    //EncryptionAlgorithm.printArray(tempArray);
                 }
                 
             }
