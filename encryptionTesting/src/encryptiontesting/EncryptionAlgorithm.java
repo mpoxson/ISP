@@ -25,7 +25,7 @@ public class EncryptionAlgorithm {
         
         
         int[] key = {a, b, c, 2* d, 2* e, 2* f, g, h, i};
-        int[] returnKey = {a, b, 2* c, 2* d, 2* e, f, g, h, i};
+        int[] returnKey = {a, b, c, 2* d, 2* e, 2* f, g, h, i};
         
         char[] coded = strToArray(message);
         
