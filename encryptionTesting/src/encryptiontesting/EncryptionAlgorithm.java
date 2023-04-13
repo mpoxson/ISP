@@ -16,16 +16,16 @@ public class EncryptionAlgorithm {
         int a = rand.nextInt(10); 
         int b = rand.nextInt(10); 
         int c = rand.nextInt(10); 
-        int d = rand.nextInt(10); 
-        int e = rand.nextInt(10); 
-        int f = rand.nextInt(10);
+        int d = rand.nextInt(5); 
+        int e = rand.nextInt(5); 
+        int f = rand.nextInt(5);
         int g = rand.nextInt(10);
         int h = rand.nextInt(10);
         int i = rand.nextInt(10);
         
         
-        int[] key = {a, b, c, d, e, f, g, h, i};
-        int[] returnKey = {a, b, c, d, e, f, g, h, i};
+        int[] key = {a, b, c, 2* d, 2* e, 2* f, g, h, i};
+        int[] returnKey = {a, b, 2* c, 2* d, 2* e, f, g, h, i};
         
         char[] coded = strToArray(message);
         
@@ -98,9 +98,9 @@ public class EncryptionAlgorithm {
     public static char[] encode(char[] coded, int[] key) {
         for(int i = 0; i < coded.length; i++) {
             int a, b, c;
-            if(coded[i] != ' ') {
+            
                 if (key[1] >= key[6] + 10) {
-                    key[1] = key[7] - 3;
+                    key[1] = key[7] - 5;
                 }
                 if(key[0] >= key[8] + 10) {
                     key[0] = key[1];
@@ -122,11 +122,12 @@ public class EncryptionAlgorithm {
                 } else {
                     c = key[2] * -1;
                 }              
+               coded[i] = (char)(coded[i] + a + b + c);
                 
-                coded[i] = (char)(coded[i] + a + b + c);
+                
                 
                 key[0]++;
-            }
+            
         }
         return coded;
     }
