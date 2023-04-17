@@ -29,6 +29,7 @@ public class Brutus {
         String codedMessage = sb.toString();
         //System.out.println(codedMessage);
         
+        //here is the common word list, compiled from various sources, for consistency, all words have to be at least 3 letters
         String[] common = {"the", "and", "that", "have", "for", "not", "with", "you", 
             "this", "but", "his", "from", "they", "say", "her", "she", "will", "one", "all", "would", 
             "there", "their", "what", "out", "about", "who", "get", "which", "make", "can", "like", 
@@ -56,15 +57,19 @@ public class Brutus {
             char[] tempArray = coded.clone();
             hits = 0;
             
-            if(tempKey[3] <= 1 && tempKey[4] <= 1 && tempKey[5] <= 1) {           
+            //since only the parity matters for key345, brutus will only test keys that have a 0 or 1 in this slot, this elimates a lot of unneccsarry work
+            if(tempKey[3] <= 1 && tempKey[4] <= 1 && tempKey[5] <= 1) {   
+                //key345 is incremented so it can decrpyt
                 tempKey[3] = tempKey[3] + 1;
                 tempKey[4] = tempKey[4] + 1;
                 tempKey[5] = tempKey[5] + 1;
+                //a new array is made with the decoded version for checking
                 char[] newCode =  EncryptionAlgorithm.encode(tempArray, tempKey);
                 String testString = toString(newCode).toLowerCase();
 
                 int lastIndex = 0;
                 
+                //the program counts the number of hits but first checking to see if the decoded version contains that word, then checking to see how many of that word
                 for(int j = 0; j < common.length; j++) {                    
                     if(testString.contains(common[j])) {
                         while (lastIndex != -1) {
@@ -76,10 +81,13 @@ public class Brutus {
                         }
                     }
                 }
+                
+                //logs the output for all hits except for 0, so the user can go into the log and get other good keys if the one found by brutus does not result in total decryption
                 if(hits != 0) {
                     System.out.println("Tested key " + i + " number of hits: " + hits);
                 }
                 
+                //determines the best key and hits, if a key is found with the same number of hits, it will take the new one
                 if(hits >= bestHits) {
                     bestKey = i;
                     bestHits = hits;   
@@ -92,6 +100,7 @@ public class Brutus {
         }
         return bestKey;
     }
+    //helper functions
     public static String toString(char[] a)
     {
         String string = new String(a);
@@ -106,6 +115,7 @@ public class Brutus {
         }
         return ch;
     }
+    //this turns an int into the compatible key, since keys are internally stored as an int array
     public static int[] intToArray(int num) {
         int[] result = {0,0,0,0,0,0,0,0,0};
         result[8] = num % 10;
