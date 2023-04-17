@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 
 public class Controller {
 
+    //The @FXML tag lets the compiler know these objects are in an FXML file
     @FXML
     public TextField txtKey, txtKey2, txtKey3;
 
@@ -32,31 +33,34 @@ public class Controller {
     private Scene scene;
     private Stage primaryStage;
 
+    //Handles button clicks
     public void setEventHandler(ActionEvent e) throws IOException {
-        //System.out.println("test");
+        
+        //Grabs source of mouse click or enter press
         Object source = e.getSource();
-        //String test = e.getSource().toString();
-        //System.out.println(source);
-        //System.out.println(test);
-        //System.out.println(encryption);
+        
+        //Determines which button was clicked
         if (source.equals(encryption)) {
+            //Changes the scene to the Encryption FXML page
             root = FXMLLoader.load(getClass().getResource("encryption.fxml"));
             primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
-                        primaryStage.getIcons().add(new Image("file:./icon.jpg"));
+            primaryStage.getIcons().add(new Image("file:./icon.jpg"));
             primaryStage.setTitle("CAESAR ENCRYPTION");
         } else if (source == decryption) {
+            //Changes the scene to the Decryption FXML page
             root = FXMLLoader.load(getClass().getResource("decryption.fxml"));
             primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
-                        primaryStage.getIcons().add(new Image("file:./icon.jpg"));
+            primaryStage.getIcons().add(new Image("file:./icon.jpg"));
             primaryStage.setTitle("ET TU?");
         } else if (source == brutus) {
-           root = FXMLLoader.load(getClass().getResource("hack.fxml"));
+            //Changes the scene to the Brutus FXML page
+            root = FXMLLoader.load(getClass().getResource("hack.fxml"));
             primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             scene = new Scene(root);
             primaryStage.setScene(scene);
@@ -64,38 +68,56 @@ public class Controller {
             primaryStage.getIcons().add(new Image("file:./icon.jpg"));
             primaryStage.setTitle("BRUTUS DECRYPTION");
         } else if (source == encrypt) {
+            //Connects to the encryption method
             int[] key = EncryptDecrypt.encrypt();
             String keyString = "";
+            
+            //loops through the returned key and makes it into a string
             for (int temp : key) {
                 keyString = keyString + temp;
             }
+            
+            //Outputs the key needed for decryption
             txtKey.setText(keyString);
         } else if (source == decrypt) {
+            
+            //Outputs length of the key
             System.out.println(txtKey2.getText().length());
+            
+            //If the key isn't 9 digits, do not decrypt
             if (txtKey2.getText().length() != 9) {
+                //Displace "error" message in the console
                 System.out.println("Not a 9 digit code");
             } else {
                 int[] key = new int[9];
                 int c = 0;
+                
+                //Converts inputted string in the textfield to character array
                 char[] tempArr = txtKey2.getText().toCharArray();
+                
+                //Loops through character array and converts to an integer
                 for (char temp : tempArr) {
-//            System.out.println("temp: " + temp);
                     key[c] = temp - 48;
-//            System.out.println("Key at " + c + ": " + key[c]);
                     c++;
                 }
+                
+                //Connects to decryption method with key
                 EncryptDecrypt.decrypt(key);
             }
         } else if (source == home) {
+            //Returns to the homepage FXML
             root = FXMLLoader.load(getClass().getResource("home.fxml"));
             primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
-                        primaryStage.getIcons().add(new Image("file:./icon.jpg"));
+            primaryStage.getIcons().add(new Image("file:./icon.jpg"));
             primaryStage.setTitle("CAESAR ENCRYPTION");
-        }else if (source == crack) {
+        } else if (source == crack) {
+            //Connects to the brute force attack method
             int crackKey = Brutus.FindKey();
+            
+            //Displays most likely key
             System.out.println(crackKey);
             txtKey3.setText("" + crackKey);
         }
